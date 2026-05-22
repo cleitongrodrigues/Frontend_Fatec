@@ -1,0 +1,125 @@
+/* =============================================
+   Reset e Base
+   ============================================= */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  min-height: 100vh;
+  color: #333;
+}
+
+/* =============================================
+   Header
+   ============================================= */
+header {
+  background-color: #2563eb;
+  color: white;
+  text-align: center;
+  padding: 24px 16px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+  font-size: 2.2rem;
+  margin-bottom: 4px;
+}
+
+header p {
+  font-size: 1rem;
+  opacity: 0.85;
+  margin-bottom: 16px;
+}
+
+/* Badge de salvamento automático */
+.storage-badge {
+  display: inline-block;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.85rem;
+  margin-left: 8px;
+  font-weight: 600;
+}
+
+/* =============================================
+   Navegação
+   ============================================= */
+.nav-menu {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 12px;
+}
+
+.nav-btn {
+  background-color: rgba(255, 255, 255, 0.15);
+  color: white;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 8px;
+  padding: 10px 24px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.nav-btn:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+}
+
+.nav-btn.active {
+  background-color: white;
+  color: #2563eb;
+  border-color: white;
+}
+
+/* =============================================
+   Container do App
+   ============================================= */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #eff6ff;
+}
+
+.app-content {
+  padding-top: 32px;
+}
+
+/* =============================================
+   Responsividade
+   ============================================= */
+@media (max-width: 768px) {
+  header h1 {
+    font-size: 1.8rem;
+  }
+
+  header p {
+    font-size: 0.9rem;
+  }
+
+  .storage-badge {
+    display: block;
+    margin: 6px auto 0;
+    width: fit-content;
+  }
+
+  .nav-menu {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .nav-btn {
+    width: 80%;
+    max-width: 300px;
+  }
+}
+

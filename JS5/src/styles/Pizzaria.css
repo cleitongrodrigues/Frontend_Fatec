@@ -1,0 +1,461 @@
+/* =============================================
+   Reset e Base
+   ============================================= */
+
+/* =============================================
+   Layout Principal da Pizzaria
+   ============================================= */
+.pizzaria-main {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 32px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* =============================================
+   Seção Cardápio
+   ============================================= */
+.menu {
+  flex: 1 1 55%;
+}
+
+.menu h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #2563eb;
+  border-bottom: 2px solid #2563eb;
+  padding-bottom: 6px;
+}
+
+/* Grade de cards de pizza */
+.pizza-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+/* Card individual de pizza */
+.pizza-card {
+  background: white;
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: transform 0.2s;
+}
+
+.pizza-card:hover {
+  transform: translateY(-4px);
+}
+
+.pizza-card .emoji {
+  font-size: 3rem;
+}
+
+.pizza-card h3 {
+  font-size: 1rem;
+  text-align: center;
+}
+
+.pizza-card .price {
+  font-weight: bold;
+  color: #2563eb;
+  font-size: 1.1rem;
+}
+
+/* Botão Adicionar ao Carrinho */
+.btn-add {
+  background-color: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  width: 100%;
+  transition: background-color 0.2s;
+}
+
+.btn-add:hover {
+  background-color: #1e40af;
+}
+
+/* =============================================
+   Responsividade - Mobile
+   ============================================= */
+@media (max-width: 768px) {
+  .pizzaria-main {
+    flex-direction: column;
+    padding: 20px 16px;
+  }
+
+  .menu {
+    flex: 1 1 100%;
+  }
+
+  .cart {
+    flex: 1 1 100%;
+    position: static;
+  }
+
+  .pizza-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 12px;
+  }
+
+  .pizza-card {
+    padding: 12px;
+  }
+
+  .pizza-card .emoji {
+    font-size: 2.5rem;
+  }
+
+  .cart-footer {
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  #clearBtn {
+    width: 100%;
+  }
+
+  .modal-footer {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .pizza-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* =============================================
+   Seção Carrinho
+   ============================================= */
+.cart {
+  flex: 1 1 35%;
+  background: white;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  align-self: flex-start;
+  position: sticky;
+  top: 24px;
+}
+
+.cart h2 {
+  font-size: 1.5rem;
+  margin-bottom: 16px;
+  color: #2563eb;
+  border-bottom: 2px solid #2563eb;
+  padding-bottom: 6px;
+}
+
+/* Lista de itens */
+#cartList {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+/* Item individual do carrinho */
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #eff6ff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  border-left: 4px solid #2563eb;
+}
+
+.cart-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cart-item-info span {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.cart-item-info small {
+  color: #888;
+  font-size: 0.82rem;
+}
+
+/* Botão Remover */
+.btn-remove {
+  background-color: #f97316;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 0.82rem;
+  transition: background-color 0.2s;
+  white-space: nowrap;
+}
+
+.btn-remove:hover {
+  background-color: #ea580c;
+}
+
+/* Mensagem carrinho vazio */
+.empty-msg {
+  text-align: center;
+  color: #aaa;
+  font-style: italic;
+  padding: 20px 0;
+}
+
+/* Rodapé do carrinho */
+.cart-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid #eee;
+  padding-top: 12px;
+  margin-top: 4px;
+}
+
+#cartTotal {
+  font-size: 1.1rem;
+  font-weight: bold;
+  color: #333;
+}
+
+/* Botão Limpar Carrinho */
+#clearBtn {
+  background-color: #64748b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 14px;
+  cursor: pointer;
+  font-size: 0.85rem;
+  transition: background-color 0.2s;
+}
+
+#clearBtn:hover {
+  background-color: #475569;
+}
+
+/* =============================================
+   Seção Finalizar Pedido
+   ============================================= */
+.finalize-section {
+  margin-top: 12px;
+}
+
+/* Botão Finalizar Pedido */
+#finalizeBtn {
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  width: 100%;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+#finalizeBtn:hover {
+  background-color: #059669;
+}
+
+/* =============================================
+   Modal de Resumo do Pedido
+   ============================================= */
+
+/* Container do modal */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Modal visível */
+.modal.active {
+  display: flex;
+}
+
+/* Overlay escurecido de fundo */
+.modal-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.7);
+  cursor: pointer;
+}
+
+/* Conteúdo do modal */
+.modal-content {
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  padding: 28px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  z-index: 1001;
+  animation: modalSlideIn 0.3s ease-out;
+}
+
+/* Animação de entrada do modal */
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-50px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Título do modal */
+.modal-content h2 {
+  font-size: 1.6rem;
+  color: #2563eb;
+  margin-bottom: 20px;
+  text-align: center;
+  border-bottom: 2px solid #2563eb;
+  padding-bottom: 10px;
+}
+
+/* Corpo do modal */
+.modal-body {
+  margin-bottom: 20px;
+}
+
+.modal-body h3 {
+  font-size: 1.1rem;
+  color: #333;
+  margin-bottom: 12px;
+}
+
+/* Lista de itens do modal */
+.modal-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-bottom: 16px;
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+/* Item individual na lista do modal */
+.modal-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #eff6ff;
+  border-radius: 8px;
+  padding: 10px 12px;
+  border-left: 3px solid #2563eb;
+}
+
+.modal-list li span {
+  font-size: 0.95rem;
+}
+
+.modal-list li .item-price {
+  font-weight: bold;
+  color: #2563eb;
+}
+
+/* Resumo do pedido no modal */
+.modal-summary {
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 14px;
+  margin-top: 16px;
+}
+
+.modal-summary p {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 0.95rem;
+}
+
+.modal-summary p:last-child {
+  margin-bottom: 0;
+}
+
+/* Total destacado */
+.modal-total {
+  font-size: 1.1rem !important;
+  color: #2563eb;
+  border-top: 1px solid #cbd5e1;
+  padding-top: 10px;
+  margin-top: 10px !important;
+}
+
+/* Rodapé do modal com botões */
+.modal-footer {
+  display: flex;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+/* Botão Confirmar */
+.btn-confirm {
+  flex: 1;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-confirm:hover {
+  background-color: #059669;
+}
+
+/* Botão Fechar */
+.btn-close {
+  flex: 1;
+  background-color: #64748b;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 0.95rem;
+  font-weight: 600;
+  transition: background-color 0.2s;
+}
+
+.btn-close:hover {
+  background-color: #475569;
+}
