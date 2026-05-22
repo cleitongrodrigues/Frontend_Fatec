@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Pizzaria FATEC</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🍕</text></svg>" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>🍕 Pizzaria FATEC</h1>
+    <p>Cardápio & Carrinho de Compras</p>
+  </header>
+
+  <main>
+    <!-- Seção do Cardápio -->
+    <section class="menu" id="menu">
+      <h2>Cardápio</h2>
+      <div class="pizza-grid" id="pizzaGrid">
+        <!-- Pizzas são inseridas via JavaScript -->
+      </div>
+    </section>
+
+    <!-- Seção do Carrinho -->
+    <section class="cart" id="cart">
+      <h2>🛒 Carrinho</h2>
+
+      <!-- Lista de itens do carrinho -->
+      <ul id="cartList">
+        <!-- Itens são inseridos via JavaScript -->
+      </ul>
+
+      <!-- Mensagem exibida quando o carrinho está vazio -->
+      <p id="emptyMsg" class="empty-msg">Seu carrinho está vazio.</p>
+
+      <!-- Rodapé do carrinho com total e botão de limpar -->
+      <div class="cart-footer" id="cartFooter">
+        <span id="cartTotal">Total: R$ 0,00</span>
+        <button id="clearBtn" onclick="clearCart()">Limpar Carrinho</button>
+      </div>
+
+      <!-- Botão Finalizar Pedido -->
+      <div class="finalize-section" id="finalizeSection">
+        <button id="finalizeBtn" onclick="abrirModal()">Finalizar Pedido 🎉</button>
+      </div>
+    </section>
+  </main>
+
+  <!-- Modal de Resumo do Pedido -->
+  <div class="modal" id="modal">
+    <!-- Overlay escurecido -->
+    <div class="modal-overlay" onclick="fecharModal()"></div>
+    
+    <!-- Conteúdo do Modal -->
+    <div class="modal-content">
+      <h2>📋 Resumo do Pedido</h2>
+      
+      <!-- Lista de pizzas do pedido -->
+      <div class="modal-body">
+        <h3>Itens do Pedido:</h3>
+        <ul id="modalList" class="modal-list">
+          <!-- Itens serão inseridos via JavaScript -->
+        </ul>
+        
+        <!-- Resumo do pedido -->
+        <div class="modal-summary">
+          <p><strong>Quantidade total:</strong> <span id="modalQuantity">0</span> pizza(s)</p>
+          <p class="modal-total"><strong>Valor total:</strong> <span id="modalTotal">R$ 0,00</span></p>
+        </div>
+      </div>
+      
+      <!-- Botões de ação -->
+      <div class="modal-footer">
+        <button class="btn-confirm" onclick="confirmarPedido()">Confirmar Pedido ✓</button>
+        <button class="btn-close" onclick="fecharModal()">Fechar ✕</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
