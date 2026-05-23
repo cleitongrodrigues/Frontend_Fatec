@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Documentação — Pizzaria FATEC</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      color: #1e293b;
+      background: #fff;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    /* ── Capa ── */
+    .cover {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #2563eb 0%, #764ba2 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 40px;
+      page-break-after: always;
+    }
+    .cover h1 { font-size: 3rem; margin-bottom: 12px; }
+    .cover .subtitle { font-size: 1.3rem; opacity: 0.9; margin-bottom: 32px; }
+    .cover .meta { font-size: 1rem; opacity: 0.75; }
+    .cover .badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      border: 1px solid rgba(255,255,255,0.4);
+      padding: 6px 16px;
+      border-radius: 20px;
+      margin: 6px;
+      font-size: 0.9rem;
+    }
+    .cover .badges { margin: 24px 0; }
+
+    /* ── Seções ── */
+    section {
+      padding: 48px 60px;
+      page-break-inside: avoid;
+    }
+    section + section { border-top: 2px solid #e2e8f0; }
+
+    h2 {
+      font-size: 1.7rem;
+      color: #2563eb;
+      border-bottom: 3px solid #2563eb;
+      padding-bottom: 10px;
+      margin-bottom: 24px;
+    }
+    h3 {
+      font-size: 1.15rem;
+      color: #1e40af;
+      margin: 20px 0 10px;
+    }
+    p { margin-bottom: 12px; }
+
+    /* ── Passo a Passo ── */
+    .steps { counter-reset: step; }
+    .step {
+      display: flex;
+      gap: 20px;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      padding: 16px 20px;
+      background: #f8fafc;
+      border-radius: 10px;
+      border-left: 4px solid #2563eb;
+    }
+    .step-num {
+      counter-increment: step;
+      content: counter(step);
+      min-width: 36px;
+      height: 36px;
+      background: #2563eb;
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+    .step-content { flex: 1; }
+    .step-content strong { display: block; margin-bottom: 4px; color: #1e293b; font-size: 1rem; }
+    code {
+      display: block;
+      background: #1e293b;
+      color: #e2e8f0;
+      padding: 10px 16px;
+      border-radius: 6px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.9rem;
+      margin-top: 8px;
+      word-break: break-all;
+    }
+    code.inline {
+      display: inline;
+      background: #e2e8f0;
+      color: #1e293b;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 0.88rem;
+    }
+
+    /* ── Tabela de Requisitos ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 12px;
+    }
+    th {
+      background: #2563eb;
+      color: white;
+      padding: 10px 14px;
+      text-align: left;
+    }
+    td {
+      padding: 10px 14px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    tr:nth-child(even) td { background: #f8fafc; }
+
+    /* ── Screenshots ── */
+    .screenshot-block {
+      margin-bottom: 40px;
+      page-break-inside: avoid;
+    }
+    .screenshot-block h3 {
+      margin-bottom: 10px;
+    }
+    .screenshot-label {
+      font-size: 0.85rem;
+      color: #64748b;
+      margin-bottom: 8px;
+    }
+    .screenshot-block img {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+    }
+
+    /* ── Funcionalidades ── */
+    .feature-list {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 8px;
+    }
+    .feature-item {
+      background: #f0f9ff;
+      border: 1px solid #bae6fd;
+      border-radius: 8px;
+      padding: 14px;
+    }
+    .feature-item .icon { font-size: 1.5rem; margin-bottom: 6px; }
+    .feature-item strong { display: block; margin-bottom: 4px; color: #0369a1; }
+    .feature-item p { font-size: 0.88rem; color: #475569; margin: 0; }
+
+    /* ── Estrutura ── */
+    .tree {
+      background: #1e293b;
+      color: #94a3b8;
+      padding: 20px 24px;
+      border-radius: 8px;
+      font-family: 'Courier New', monospace;
+      font-size: 0.88rem;
+      line-height: 1.8;
+    }
+    .tree .dir { color: #60a5fa; font-weight: bold; }
+    .tree .file { color: #e2e8f0; }
+    .tree .comment { color: #475569; }
+
+    /* ── Rodapé ── */
+    footer {
+      text-align: center;
+      padding: 30px;
+      background: #1e293b;
+      color: #94a3b8;
+      font-size: 0.85rem;
+    }
+
+    /* ── Print ── */
+    @media print {
+      .cover { min-height: 100vh; }
+      section { padding: 36px 48px; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════
+     CAPA
+═══════════════════════════════════════ -->
+<div class="cover">
+  <div style="font-size:5rem; margin-bottom: 16px;">🍕</div>
+  <h1>Pizzaria FATEC</h1>
+  <p class="subtitle">Documentação Técnica do Projeto</p>
+  <div class="badges">
+    <span class="badge">⚛️ React 18</span>
+    <span class="badge">⚡ Vite</span>
+    <span class="badge">💾 localStorage</span>
+    <span class="badge">📱 Responsivo</span>
+  </div>
+  <p class="meta">
+    Projeto desenvolvido na disciplina de Front-End — FATEC<br/>
+    Pasta: <strong>JS5</strong> &nbsp;|&nbsp; Gerado em: maio de 2026
+  </p>
+</div>
+
+<!-- ═══════════════════════════════════════
+     1. SOBRE O PROJETO
+═══════════════════════════════════════ -->
+<section>
+  <h2>📋 Sobre o Projeto</h2>
+  <p>
+    O projeto <strong>Pizzaria FATEC</strong> é uma aplicação web desenvolvida com <strong>React 18 + Vite</strong>
+    como evolução dos exercícios anteriores em JavaScript puro (pastas JS3 e JS4). A aplicação reúne duas
+    funcionalidades principais em uma Single Page Application (SPA) com navegação por estado:
+  </p>
+
+  <div class="feature-list">
+    <div class="feature-item">
+      <div class="icon">🍕</div>
+      <strong>Cardápio Interativo</strong>
+      <p>Listagem de pizzas com preços. Adicione ao carrinho, visualize o total e finalize o pedido.</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">🛒</div>
+      <strong>Carrinho Persistente</strong>
+      <p>O carrinho é salvo automaticamente no <code class="inline">localStorage</code>, mantendo os itens ao recarregar a página.</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">📧</div>
+      <strong>Formulário de Contato</strong>
+      <p>Formulário com validação em tempo real dos campos nome, e-mail e mensagem.</p>
+    </div>
+    <div class="feature-item">
+      <div class="icon">📱</div>
+      <strong>Design Responsivo</strong>
+      <p>Layout adaptado para desktop e dispositivos móveis com breakpoints em 768px e 480px.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     2. ESTRUTURA DE ARQUIVOS
+═══════════════════════════════════════ -->
+<section>
+  <h2>📁 Estrutura de Arquivos</h2>
+  <div class="tree">
+<span class="dir">JS5/</span><br/>
+├── <span class="file">index.html</span>         <span class="comment"># Entrada HTML do app</span><br/>
+├── <span class="file">package.json</span>        <span class="comment"># Dependências e scripts</span><br/>
+├── <span class="file">vite.config.js</span>      <span class="comment"># Configuração do Vite</span><br/>
+├── <span class="file">eslint.config.js</span>    <span class="comment"># Configuração do ESLint</span><br/>
+├── <span class="dir">public/</span>              <span class="comment"># Arquivos estáticos</span><br/>
+└── <span class="dir">src/</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="file">main.jsx</span>         <span class="comment"># Ponto de entrada React</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="file">App.jsx</span>          <span class="comment"># Componente raiz + navegação</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="file">App.css</span>          <span class="comment"># Estilos globais e header</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="file">index.css</span>        <span class="comment"># Reset CSS global</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="dir">components/</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;├── <span class="file">Pizzaria.jsx</span>     <span class="comment"># Cardápio + carrinho</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;│&nbsp;&nbsp;&nbsp;└── <span class="file">Contato.jsx</span>      <span class="comment"># Formulário de contato</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="dir">styles/</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;├── <span class="file">Pizzaria.css</span>     <span class="comment"># Estilos do componente Pizzaria</span><br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;└── <span class="file">Contato.css</span>      <span class="comment"># Estilos do componente Contato</span>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════
+     3. REQUISITOS
+═══════════════════════════════════════ -->
+<section>
+  <h2>⚙️ Requisitos</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Ferramenta</th>
+        <th>Versão Mínima</th>
+        <th>Observação</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Node.js</td>
+        <td>18.x ou superior</td>
+        <td>Obrigatório. Disponível em <strong>nodejs.org</strong></td>
+      </tr>
+      <tr>
+        <td>npm</td>
+        <td>9.x ou superior</td>
+        <td>Incluído com o Node.js</td>
+      </tr>
+      <tr>
+        <td>Vite</td>
+        <td>8.x</td>
+        <td>Instalado via <code class="inline">npm install</code></td>
+      </tr>
+      <tr>
+        <td>React</td>
+        <td>18.x</td>
+        <td>Instalado via <code class="inline">npm install</code></td>
+      </tr>
+      <tr>
+        <td>Navegador</td>
+        <td>Qualquer moderno</td>
+        <td>Chrome, Edge, Firefox, Safari</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════════════════════════════
+     4. COMO RODAR O PROJETO
+═══════════════════════════════════════ -->
+<section>
+  <h2>🚀 Como Rodar o Projeto</h2>
+
+  <div class="steps">
+
+    <div class="step">
+      <div class="step-num">1</div>
+      <div class="step-content">
+        <strong>Clone ou baixe o repositório</strong>
+        Certifique-se de ter o projeto na sua máquina. Se ainda não tiver, clone com Git:
+        <code>git clone https://github.com/seu-usuario/Frontend-Fatec.git</code>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">2</div>
+      <div class="step-content">
+        <strong>Acesse a pasta JS5 no terminal</strong>
+        Abra o terminal (PowerShell, CMD ou Bash) e navegue até a pasta do projeto:
+        <code>cd caminho/para/Frontend-Fatec/JS5</code>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">3</div>
+      <div class="step-content">
+        <strong>Instale as dependências</strong>
+        Execute o comando abaixo para baixar todas as bibliotecas necessárias (React, Vite, etc.):
+        <code>npm install</code>
+        <p style="margin-top:8px; font-size:0.88rem; color:#64748b;">
+          Isso cria a pasta <code class="inline">node_modules/</code>. Execute apenas uma vez (ou quando houver mudanças no <code class="inline">package.json</code>).
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">4</div>
+      <div class="step-content">
+        <strong>Inicie o servidor de desenvolvimento</strong>
+        <p>Em sistemas Linux/Mac ou CMD:</p>
+        <code>npm run dev</code>
+        <p style="margin-top:10px;">Em <strong>Windows PowerShell</strong> (se houver erro de política de execução):</p>
+        <code>node node_modules/vite/bin/vite.js</code>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">5</div>
+      <div class="step-content">
+        <strong>Abra no navegador</strong>
+        Após iniciar, o terminal exibirá o endereço local. Acesse:
+        <code>http://localhost:5173/</code>
+        <p style="margin-top:8px; font-size:0.88rem; color:#64748b;">
+          A porta padrão é <code class="inline">5173</code>. Se já estiver em uso, o Vite usará automaticamente a próxima disponível (5174, 5175, etc.).
+        </p>
+      </div>
+    </div>
+
+    <div class="step">
+      <div class="step-num">6</div>
+      <div class="step-content">
+        <strong>Encerrar o servidor</strong>
+        Para parar o servidor de desenvolvimento, pressione:
+        <code>Ctrl + C</code>
+      </div>
+    </div>
+
+  </div>
+
+  <h3>📦 Build para Produção (opcional)</h3>
+  <p>Para gerar os arquivos otimizados para produção:</p>
+  <code>npm run build</code>
+  <p style="margin-top:10px;">Os arquivos serão gerados na pasta <code class="inline">dist/</code>. Para visualizá-los localmente:</p>
+  <code>npm run preview</code>
+</section>
+
+<!-- ═══════════════════════════════════════
+     5. TELAS DO SISTEMA
+═══════════════════════════════════════ -->
+<section>
+  <h2>🖥️ Telas do Sistema</h2>
+
+  <div class="screenshot-block">
+    <h3>Tela 1 — Cardápio (carrinho vazio)</h3>
+    <p class="screenshot-label">Exibe o cardápio com as 6 pizzas disponíveis e o carrinho ainda sem itens.</p>
+    <img src="./tela1_cardapio_vazio.png" alt="Cardápio com carrinho vazio" />
+  </div>
+
+  <div class="screenshot-block">
+    <h3>Tela 2 — Cardápio com itens no carrinho</h3>
+    <p class="screenshot-label">Após adicionar pizzas: o carrinho exibe os itens, total e botões de ação.</p>
+    <img src="./tela2_cardapio_com_carrinho.png" alt="Cardápio com itens no carrinho" />
+  </div>
+
+  <div class="screenshot-block">
+    <h3>Tela 3 — Formulário de Contato (vazio)</h3>
+    <p class="screenshot-label">Página de contato com campos nome, e-mail, assunto e mensagem.</p>
+    <img src="./tela3_contato_vazio.png" alt="Formulário de contato vazio" />
+  </div>
+
+  <div class="screenshot-block">
+    <h3>Tela 4 — Formulário de Contato (preenchido)</h3>
+    <p class="screenshot-label">Formulário com campos validados em tempo real mostrando estados de sucesso.</p>
+    <img src="./tela4_contato_preenchido.png" alt="Formulário de contato preenchido" />
+  </div>
+
+</section>
+
+<!-- ═══════════════════════════════════════
+     6. TECNOLOGIAS
+═══════════════════════════════════════ -->
+<section>
+  <h2>🛠️ Tecnologias Utilizadas</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Tecnologia</th>
+        <th>Uso no Projeto</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><strong>React 18</strong></td>
+        <td>Componentização, hooks (<code class="inline">useState</code>, <code class="inline">useEffect</code>), renderização condicional</td>
+      </tr>
+      <tr>
+        <td><strong>Vite 8</strong></td>
+        <td>Bundler e servidor de desenvolvimento com hot-reload</td>
+      </tr>
+      <tr>
+        <td><strong>CSS Modules (manual)</strong></td>
+        <td>Arquivos <code class="inline">.css</code> por componente para isolamento de estilos</td>
+      </tr>
+      <tr>
+        <td><strong>localStorage</strong></td>
+        <td>Persistência do carrinho entre recarregamentos da página</td>
+      </tr>
+      <tr>
+        <td><strong>HTML5 / JSX</strong></td>
+        <td>Marcação semântica com componentes React funcionais</td>
+      </tr>
+      <tr>
+        <td><strong>ESLint</strong></td>
+        <td>Linting e padronização do código JavaScript/JSX</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- ═══════════════════════════════════════
+     RODAPÉ
+═══════════════════════════════════════ -->
+<footer>
+  <p>🍕 Pizzaria FATEC &nbsp;·&nbsp; Projeto Front-End &nbsp;·&nbsp; FATEC &nbsp;·&nbsp; 2026</p>
+  <p style="margin-top:6px; font-size:0.8rem;">Documentação gerada automaticamente com Playwright + Vite</p>
+</footer>
+
+</body>
+</html>
